@@ -109,11 +109,20 @@ ___
 10.151.141.152 tbds-10-151-141-152  
 >  10.151.135.224 tbds-10-151-135-224  
 ___
-  
- 
+
 ## 5. 启动runner 
 a. 切到目录  
 /usr/local/lhotse_runners
 
 b. hdfs 用户执行  
 ./start_jar.sh
+
+##6. 添加服务  
+将新建的runner添加到集群配置中  
+
+操作如下图
+![新建服务](https://picabstract-preview-ftn.weiyun.com:8443/ftn_pic_abs_v2/987474dbe5a61b20c944dc8daecb65bfd90f7ebb83ca311a339e61ad5b2ed793cc1d104bab9dab48d98af20b05f4622a?pictype=scale&from=30113&version=2.0.0.2&uin=821244074&fname=20170918221108.png&size=1024)
+
+添加对应节点的runner
+![添加runner](https://picabstract-preview-ftn.weiyun.com:8443/ftn_pic_abs_v2/d57629254b68f4cefade48c75236d5aceb0d7b68760c55639bd80880015cc7b8abcc28d5c0b65e94fe74e2898b632b3d?pictype=scale&from=30113&version=2.0.0.2&uin=821244074&fname=20170918221620.png&size=1024)
+
