@@ -56,45 +56,54 @@ _
 ### 4. 修改runner 配置
 相关内容可以参考 控制集群 runner 节点  
 
-**a. 修改lhotse_base.properties 文件**  
+**a. 修改 lhotse_base.properties 文件**  
 
 ___
-  base_ip = 控制集群 base hostname  
-  base_port = lhotse.base.port  
-  ftp_user=hdfs  
-  ftp_password=ftp@Tbds.com  
-  ftp_path=/  
-  doAndRedo_url=http://lhotse-yh-webCgi.tencent-distribute.com:8081/LService/RedoAndDoState  
-  type.list=37,38,39,66,67,68,69,70,72,75,92,98,99,100,104,105,118,119,120  （默认就行，除非有自定义任务）
-  discovery.service.zk.conn.str=服务发现 zk 地址  
-  discovery.cluster.name=tdw    
+base_ip = 控制集群 base 节点hostname  
+base_port =  高级配置 lhotse-base-env 配置的 lhotse.base.port属性值   
+ftp_user=hdfs  
+ftp_password=ftp@Tbds.com  
+ftp_path=/  
+doAndRedo_url=http://lhotse-yh-webCgi.tencent-distribute.com:8081/LService/RedoAndDoState  
+type.list=37,38,39,66,67,68,69,70,72,75,92,98,99,100,104,105,118,119,120  
+discovery.service.zk.conn.str=控制集群 zk 地址  
+discovery.cluster.name=tdw    
 ___  
 
-demo 文件内容 参考   
+__demo 文件内容 参考__   
 ___
->  base_ip = tbds-10-254-99-17  
->  base_port = 9930  
->  ftp_user=hdfs  
->  ftp_password=ftp@Tbds.com  
->  ftp_path=/  
->  doAndRedo_url=http://lhotse-yh-webCgi.tencent-distribute.com:8081/LService/RedoAndDoState  
->  type.list=37,38,39,66,67,68,69,70,72,75,92,98,99,100,104,105,118,119,120  
->  discovery.service.zk.conn.str=tbds-10-151-135-217:2181,tbds-10-151-141-151:2181,tbds-10-151-141-152:2181  
->  discovery.cluster.name=tdw    
+>  base_ip = tbds-10-219-7-148  
+base_port = 9930  
+ftp_user=hdfs  
+ftp_password=ftp@Tbds.com  
+ftp_path=/  
+doAndRedo_url=http://lhotse-yh-webCgi.tencent-distribute.com:8081/LService/RedoAndDoState  
+type.list=37,38,39,66,67,68,69,70,72,75,92,98,99,100,104,105,118,119,120,123  
+discovery.service.zk.conn.str=tbds-100-76-22-204:2181,tbds-10-254-96-17:2181,tbds-10-234-135-212:2181  
+discovery.cluster.name=tdw  
 ___  
 
 
-**b. 添加新的配置文件 discovery.properties**
+**b. 添加新的配置文件 discover.properties**
 
-discovery.service.zk.conn.str 为服务发现的 zk 地址。
 ___
-> discovery.service.client.fixedtime.sync.interval.millis=60000
-discovery.exception.feedback.blacklist.policy.checktime.seconds=60
-discovery.exception.feedback.blacklist.policy.checkcount.threshoud=3
-discovery.service.zk.conn.timeout.millis=1200000
-discovery.service.zk.session.timeout.millis=600000
-discovery.service.zk.conn.str=tbds-10-151-135-217:2181,tbds-10-151-141-151:2181,tbds-10-151-141-152:2181
->  discovery.cluster.name=tdw
+> discovery.service.client.fixedtime.sync.interval.millis=60000  
+discovery.exception.feedback.blacklist.policy.checktime.seconds=60  
+discovery.exception.feedback.blacklist.policy.checkcount.threshoud=3  
+discovery.service.zk.conn.timeout.millis=1200000  
+discovery.service.zk.session.timeout.millis=600000  
+discovery.service.zk.conn.str=为服务发现的 zk 地址(控制集群 zk 地址)   
+>  discovery.cluster.name= 通常 默认值都是tdw  
+___
+__demo 内容参考如下：__
+___
+>discovery.service.client.fixedtime.sync.interval.millis=60000  
+discovery.exception.feedback.blacklist.policy.checktime.seconds=60  
+discovery.exception.feedback.blacklist.policy.checkcount.threshoud=3  
+discovery.service.zk.conn.timeout.millis=1200000  
+discovery.service.zk.session.timeout.millis=600000  
+discovery.service.zk.conn.str=tbds-100-76-22-204:2181,tbds-10-254-96-17:2181,tbds-10-234-135-212:2181  
+discovery.cluster.name=tdw  
 ___
 
 **c. 添加host name**  
@@ -116,6 +125,9 @@ a. 切到目录
 
 b. hdfs 用户执行  
 ./start_jar.sh
+
+c. 将hdfs 用户添加到sudo组  
+echo "hdfs ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 ##6. 添加服务  
 将新建的runner添加到集群配置中  
