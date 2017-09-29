@@ -29,8 +29,9 @@ __务必选择一个没有安装httpd 的节点__
 ### 3. 安装jdk1.8
 1. yum install -y jdk1.8.0_111  
 
+### 4. 确认 pstree -p pid 命令可用
 
-### 4. 安装httpd
+### 5. 安装httpd
 1. yum install -y httpd
 2. 修改httpd 配置 (/etc/httpd/conf/httpd.conf)   
   注释  Listen 80   
@@ -53,7 +54,7 @@ _
 5. 启动httpd  
   su hdfs -c "/usr/sbin/httpd"
 
-### 4. 修改runner 配置
+### 6. 修改runner 配置
 相关内容可以参考 控制集群 runner 节点  
 
 **a. 修改 lhotse_base.properties 文件**  
@@ -119,7 +120,7 @@ ___
 >  10.151.135.224 tbds-10-151-135-224  
 ___
 
-## 5. 启动runner 
+### 7. 启动runner 
 a. 切到目录  
 /usr/local/lhotse_runners
 
@@ -129,7 +130,7 @@ b. hdfs 用户执行
 c. 将hdfs 用户添加到sudo组  
 echo "hdfs ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-##6. 添加服务  
+### 8. 添加服务  
 将新建的runner添加到集群配置中  
 
 操作如下图
