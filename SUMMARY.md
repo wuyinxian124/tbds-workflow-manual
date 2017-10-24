@@ -1,4 +1,5 @@
 # 概要
 
 * [基本概念](chapter1.md)
-* [ftp2hdfs](ftp2hdfs.md)
+* [ftp2hdfs](ftp2hdfs.md)  
+* [手动安装runner节点](addrunner.md)
