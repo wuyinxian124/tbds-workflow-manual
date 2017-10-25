@@ -1,4 +1,5 @@
-# ftp->hdfs 
+# Ftp导入HDFS 
 
-ftp导入到hdfs
+将ftp 服务器的数据导入到HDFS。
 
+__概述：__ 
