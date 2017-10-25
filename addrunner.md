@@ -4,14 +4,15 @@
 安装步骤包括：  
 1. 添加yum源  
 2. 添加hdfs 用户  
-3. 安装runner服务  
+3. 安装lhotse runner服务  
 4. 安装httpd服务  
 5. 修改httpd配置  
-6. 修改runner配置  
-7. 修改base设置（该步骤以下，只针对升级系统适用）  
+6. 修改lhotse runner配置  
+7. 修改lhotse base设置（该步骤以下，只针对升级系统适用）  
 8. 更新metadb  
-9. 重启base  
-10. 重启runner  
+9. 重启lhotse base  
+10. 重启lhotse runner  
+11. 更新lhotse service  
 
 ### 一、添加yum 源
 假设需要安装runner服务的节点是10.0.0.1。  
@@ -188,7 +189,7 @@ update lb_task_type_ext set regex='{"tab":"1-基本属性","tip":"必须是整�
 在portal （或者8080端口）重启taskscheduler  
 
 ### 十、 启动tbds集群以外节点的runner服务  
-**hdfs 用户操作**
+**以下操作使用 hdfs 用户**
 1. 启动runner 服务  
 切到/usr/local/lhotse_runners 目录  
 启动runner服务  ./start_jar.sh  
@@ -197,3 +198,22 @@ update lb_task_type_ext set regex='{"tab":"1-基本属性","tip":"必须是整�
 3. 确认httpd，runner启动  
 执行命令：netstat -pan|grep httpd  有相关输出,确认httpd 启动ok.  
 执行命令： jps ,有TaskRunnerLoader 相关进程信息，确认runner启动ok.    
+
+### 十一、 更改lhotse service  
+**以下操作使用 lhotse 用户**  
+1. 切到lhotse serices 节点  
+<br>
+2. 更新并重启lhotse sercice  
+a. 更新/usr/local/lhotse_service/webapps/LService/WEB-INF/classes/com/tencent/lhotse/config/AddServerConfig.class 文件  
+b. 更新/usr/local/lhotse_service/webapps/LService/WEB-INF/classes/com/tencent/lhotse/servlet1/AddServerServlet.class 文件  
+c. 更新/usr/local/lhotse_service/webapps/LService/WEB-INF/classes/com/tencent/lhotse/service1/AddServerService.class文件  
+d. 重启lhotse serices  
+    1. 切到/usr/local/lhotse_service 目录
+    2. 停止lhotse server 
+    ```shell
+     bin/shutdown.sh 
+    ```
+    3. 启动lhotse server 
+    ```shell
+     bin/bin/startup.sh 
+    ```
