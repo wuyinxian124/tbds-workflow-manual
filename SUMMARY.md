@@ -5,5 +5,6 @@
 * [手动安装runner服务](addrunner.md)
 * [任务基本信息](runnerBasicInfo.md)
 * [任务调度设置](runnerCycle.md)
-* [shell](shell.md)
 * [ftp2hdfs](ftp2hdfs.md)
+* [kafka2hbase](kafka2hbase.md)
+* [kafka2hdfs](kafka2hdfs.md)
